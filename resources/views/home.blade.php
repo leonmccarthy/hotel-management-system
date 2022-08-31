@@ -70,7 +70,18 @@ https://templatemo.com/tm-558-klassy-cafe
                                     <li><a href="#">Features Page 4</a></li>
                                 </ul>
                             </li>
-                            <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li> 
+                            <li class="scroll-to-section"><a href="#reservation">Contact Us</a></li>
+                            
+                            <li class="scroll-to-section" style="background-color: pink;">
+                                <a href="#reservation">
+                                    @auth
+                                        Cart [{{ $count }}]
+                                    @endauth
+                                    @guest
+                                        Cart [0]
+                                    @endguest
+                                </a>
+                            </li>
                             
                             {{-- conditional rendering of login and register and dashboard --}}
                             <li>

@@ -41,6 +41,9 @@ Route::get('/updatechefview/{id}', [AdminController::class, 'updatechefview']);
 Route::post('/updatechefaction/{id}', [AdminController::class, 'updatechefaction']);
 Route::get('/deletechef/{id}', [AdminController::class, 'deletechef']);
 
+//CART
+Route::post('/addtocart/{id}', [HomeController::class, 'addtocart']);
+
 
 Route::middleware([
     'auth:sanctum',

@@ -10,6 +10,8 @@ use App\Models\Chef;
 
 class AdminController extends Controller
 {
+
+    // USER FUNCTIONS
     public function user(){
         $data = User::all();
         return view('admin.user', compact("data"));
@@ -21,6 +23,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    //FOOD MENU FUNCTIONS
     public function foodmenu(){
         $fooddata = Food::all();
         return view('admin.admin-foodmenu', compact("fooddata"));
@@ -65,6 +68,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    //RESERVATION FUNCTIONS
     public function makereservation(Request $request){
         $data = new Reservastion;
         $data->name = $request->name;
@@ -84,6 +88,7 @@ class AdminController extends Controller
         return view('admin.admin-reservation', compact('reservationdata'));
     }
 
+    //CHEF FUNCTIONS
     public function uploadchef(Request $request){
         $chef = new Chef;
         $image = $request->image;
@@ -123,4 +128,5 @@ class AdminController extends Controller
         $chefdata->delete();
         return redirect()->back();
     }
+
 }
