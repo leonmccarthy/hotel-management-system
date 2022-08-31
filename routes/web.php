@@ -28,6 +28,10 @@ Route::post('/uploadfood', [ AdminController::class, 'uploadfood']);
 
 Route::get('/deletefood/{id}', [AdminController::class, 'deletefood']);
 
+Route::get('/updatefoodview/{id}', [AdminController::class, 'updatefoodview']);
+
+Route::post('/updatefoodaction/{id}', [AdminController::class, 'updatefoodaction']);
+
 Route::get('/deleteUser/{id}', [ AdminController::class, 'deleteUser']);
 
 Route::middleware([

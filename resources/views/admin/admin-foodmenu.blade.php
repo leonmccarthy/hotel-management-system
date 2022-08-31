@@ -55,18 +55,21 @@
                     <div>
                         <table style="background-color: black;">
                             <tr>
-                                <th style="padding: 30px;">Food name</th>
-                                <th style="padding: 30px;">Food price</th>
-                                <th style="padding: 30px;">Food description</th>
-                                <th style="padding: 30px;">Food image</th>
+                                <th style="padding: 20px;">Food name</th>
+                                <th style="padding: 20px;">Food price</th>
+                                <th style="padding: 20px;">Food description</th>
+                                <th style="padding: 20px;">Food image</th>
+                                <th style="padding: 20px;">Action</th>
+                                <th style="padding: 20px;">Action 2</th>
                             </tr>
                             @foreach ($fooddata as $fooddata)
                                 <tr style="align: center;">
-                                    <td style="padding:8px 30px;">{{ $fooddata->title }}</td>
-                                    <td style="padding:8px 30px;">{{ $fooddata->price }}</td>
-                                    <td style="padding:8px 30px;">{{ $fooddata->description }}</td>
-                                    <td style="padding:8px 30px;"><img height="70" width="70" src="/foodimage/{{ $fooddata->image }}"></td>
-                                    <td style="padding:8px 30px;"><a href="{{ url('/deletefood', $fooddata->id) }}">Delete</a></td>
+                                    <td style="padding:8px 20px;">{{ $fooddata->title }}</td>
+                                    <td style="padding:8px 20px;">{{ $fooddata->price }}</td>
+                                    <td style="padding:8px 20px;">{{ $fooddata->description }}</td>
+                                    <td style="padding:8px 20px;"><img height="70" width="70" src="/foodimage/{{ $fooddata->image }}"></td>
+                                    <td style="padding:8px 20px;"><a href="{{ url('/deletefood', $fooddata->id) }}">Delete</a></td>
+                                    <td style="padding:8px 20px;"><a href="{{ url('/updatefoodview', $fooddata->id) }}">Update</a></td>
                                 </tr>
                             @endforeach
                         </table>
