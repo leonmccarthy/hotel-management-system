@@ -15,24 +15,25 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-
+// HOME PAGE
 Route::get('/', [ HomeController::class, 'index' ]);
-
 Route::get('/redirects', [ HomeController::class, 'redirects']);
 
+// USER FUNCTIONS ROUTE (ADMIN)
 Route::get('/users', [ AdminController::class, 'user']);
+Route::get('/deleteUser/{id}', [ AdminController::class, 'deleteUser']);
 
+//FOOD MENU ROUTES
 Route::get('/foodmenu', [ AdminController::class, 'foodmenu']);
-
 Route::post('/uploadfood', [ AdminController::class, 'uploadfood']);
-
 Route::get('/deletefood/{id}', [AdminController::class, 'deletefood']);
-
 Route::get('/updatefoodview/{id}', [AdminController::class, 'updatefoodview']);
-
 Route::post('/updatefoodaction/{id}', [AdminController::class, 'updatefoodaction']);
 
-Route::get('/deleteUser/{id}', [ AdminController::class, 'deleteUser']);
+//RESERVATION ROUTES
+Route::post('/reservation',[AdminController::class, 'makereservation']);
+Route::get('/reservations', [AdminController::class, 'viewreservations']);
+
 
 Route::middleware([
     'auth:sanctum',
