@@ -59,34 +59,50 @@ class HomeController extends Controller
     }
 
     public function showcart($id){
-        $count = Cart::where('user_id', $id)->count();
-        $data = Cart::where('user_id', $id)->join('food', "carts.food_id", "=", "food.id")->get();
-        $cart = Cart::select('*')->where('user_id', '=' , $id)->get();
-        return view("showcart", compact('count', 'data', 'cart'));
+        if(Auth::id()){
+            $count = Cart::where('user_id', $id)->count();
+
+        if(Auth::id()==$id){
+            $data = Cart::where('user_id', $id)->join('food', "carts.food_id", "=", "food.id")->get();
+            $cart = Cart::select('*')->where('user_id', '=' , $id)->get();
+            return view("showcart", compact('count', 'data', 'cart'));
+        }else{
+            return redirect()->back();
+        }
+        }else{
+            return redirect()->back();
+        }    
+        
     }
 
     public function removeorder($id){
-        $cart = Cart::find($id);
-        $cart->delete();
-        return redirect()->back();
+        if(Auth::id()){
+            $cart = Cart::find($id);
+            $cart->delete();
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 
     public function confirmorder(Request $request){
-
-        foreach($request->foodname as $key=>$foodname){
-            $order = new Order();
-
-            $order->foodname = $foodname;
-            $order->price = $request->price[$key];
-            $order->quantity = $request->quantity[$key];
-            $order->name = $request->name;
-            $order->phone = $request->phone;
-            $order->address = $request->address;
-
-            $order->save();
+        if(Auth::id()){
+            foreach($request->foodname as $key=>$foodname){
+                $order = new Order();
+    
+                $order->foodname = $foodname;
+                $order->price = $request->price[$key];
+                $order->quantity = $request->quantity[$key];
+                $order->name = $request->name;
+                $order->phone = $request->phone;
+                $order->address = $request->address;
+    
+                $order->save();
+            }
+            return redirect()->back();
+        }else{
+            return redirect()->back();
         }
         
-        
-        return redirect()->back();
     }
 }

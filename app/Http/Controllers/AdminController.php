@@ -8,14 +8,24 @@ use App\Models\Food;
 use App\Models\Reservastion;
 use App\Models\Chef;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
 
     // USER FUNCTIONS
     public function user(){
-        $data = User::all();
-        return view('admin.user', compact("data"));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $data = User::all();
+                return view('admin.user', compact("data"));
+            }else{
+                return redirect()->back();
+            }
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function deleteUser($id){
@@ -26,8 +36,15 @@ class AdminController extends Controller
 
     //FOOD MENU FUNCTIONS
     public function foodmenu(){
-        $fooddata = Food::all();
-        return view('admin.admin-foodmenu', compact("fooddata"));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $fooddata = Food::all();
+                return view('admin.admin-foodmenu', compact("fooddata"));
+            }
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function uploadfood(Request $request){
@@ -51,8 +68,14 @@ class AdminController extends Controller
     }
 
     public function updatefoodview($id){
-        $fooddata = Food::find($id);
-        return view('admin.admin-updatefood', compact('fooddata'));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $fooddata = Food::find($id);
+                return view('admin.admin-updatefood', compact('fooddata'));
+            }
+        }else{
+            return redirect()->back();
+        }
     }
 
     public function updatefoodaction( Request $request, $id){
@@ -85,8 +108,15 @@ class AdminController extends Controller
     }
 
     public function viewreservations(){
-        $reservationdata = Reservastion::all();
-        return view('admin.admin-reservation', compact('reservationdata'));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $reservationdata = Reservastion::all();
+                return view('admin.admin-reservation', compact('reservationdata'));
+            }
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     //CHEF FUNCTIONS
@@ -103,13 +133,27 @@ class AdminController extends Controller
     }
 
     public function viewchefs(){
-        $chefdata = Chef::all();
-        return view('admin.admin-chefs', compact('chefdata'));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $chefdata = Chef::all();
+                return view('admin.admin-chefs', compact('chefdata'));
+            }
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function updatechefview($id){
-        $chefdata = Chef::find($id);
-        return view('admin.admin-updatechefs', compact('chefdata'));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $chefdata = Chef::find($id);
+                return view('admin.admin-updatechefs', compact('chefdata'));
+            }
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function updatechefaction(Request $request, $id){
@@ -132,8 +176,15 @@ class AdminController extends Controller
 
     //ORDER FUNCTIONS
     public function vieworders(){
-        $orders = Order::all();
-        return view('admin.admin-orders', compact('orders'));
+        if(Auth::id()){
+            if(Auth::user()->usertype==="1"){
+                $orders = Order::all();
+                return view('admin.admin-orders', compact('orders'));
+            }
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function search(Request $request){
