@@ -47,6 +47,9 @@ Route::get('/showcart/{id}', [HomeController::class, 'showcart']);
 Route::get('/removeorder/{id}', [HomeController::class, 'removeorder']);
 Route::post('/orderconfirmation', [HomeController::class, 'confirmorder']);
 
+//ORDERS ROUTES
+Route::get('/orders', [AdminController::class, 'vieworders']);
+
 
 Route::middleware([
     'auth:sanctum',

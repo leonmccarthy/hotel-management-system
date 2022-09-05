@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Food;
 use App\Models\Reservastion;
 use App\Models\Chef;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -127,6 +128,12 @@ class AdminController extends Controller
         $chefdata = Chef::find($id);
         $chefdata->delete();
         return redirect()->back();
+    }
+
+    //ORDER FUNCTIONS
+    public function vieworders(){
+        $orders = Order::all();
+        return view('admin.admin-orders', compact('orders'));
     }
 
 }
