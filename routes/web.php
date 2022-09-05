@@ -43,6 +43,9 @@ Route::get('/deletechef/{id}', [AdminController::class, 'deletechef']);
 
 //CART
 Route::post('/addtocart/{id}', [HomeController::class, 'addtocart']);
+Route::get('/showcart/{id}', [HomeController::class, 'showcart']);
+Route::get('/removeorder/{id}', [HomeController::class, 'removeorder']);
+Route::post('/orderconfirmation', [HomeController::class, 'confirmorder']);
 
 
 Route::middleware([
