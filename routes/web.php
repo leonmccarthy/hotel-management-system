@@ -49,6 +49,7 @@ Route::post('/orderconfirmation', [HomeController::class, 'confirmorder']);
 
 //ORDERS ROUTES
 Route::get('/orders', [AdminController::class, 'vieworders']);
+Route::get('/searchcustomer', [AdminController::class, 'search']);
 
 
 Route::middleware([

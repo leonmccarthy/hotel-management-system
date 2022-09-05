@@ -136,4 +136,11 @@ class AdminController extends Controller
         return view('admin.admin-orders', compact('orders'));
     }
 
+    public function search(Request $request){
+        $search = $request->search;
+        $orders = Order::where('name', 'Like', '%'.$search.'%')->
+        orWhere('foodname', 'Like', '%'.$search.'%')->get();
+        return view('admin.admin-orders', compact('orders'));
+    }
+
 }

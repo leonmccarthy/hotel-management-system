@@ -19,6 +19,14 @@
         <div style="position: relative; top: 60px; right: -150px;" align="center">
             <h1 align="center">Customer Orders</h1>
 
+                <div style="padding: 8px 20px;">
+                    <form action="{{ url('/searchcustomer') }}" method="get">
+                        @csrf
+                        <input type="text" name="search" placeholder="search customer name" style="color: black;">
+                        <input type="submit" value="Search" class="btn btn-success" >
+                    </form>
+                </div>
+
             <table  bgcolor="black">
                 <tr align="center">
                     <th style="padding: 8px 20px;">Name</th>
